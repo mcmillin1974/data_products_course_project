@@ -2,9 +2,10 @@ library(shinythemes)
 library(data.table)
 salary.disp <- fread("salary.dat", header = TRUE)
 
-shinyUI(fluidPage(
-        
-        titlePanel("Small College Salary Predictor"),
+shinyUI(fluidPage(navlistPanel(
+        tabPanel("Salary Predictor App",
+                 
+        #titlePanel("Small College Salary Predictor"),
         sidebarLayout(
                 sidebarPanel(
                         h5("About this app: This application predicts a tenured professor's salary for a small college.  This data (from S. Weisberg's book: Applied Linear Regression) is based on the salary informatoin for 52 tenured professors at a small college."),
@@ -26,5 +27,6 @@ shinyUI(fluidPage(
                         h3(textOutput("pred.sal"))
                         )
                 )
-        )
+        )),
+        tabPanel("User Documentation/Instructions", includeHTML("Salary_Predictor_Documentation.html")))
 ))
