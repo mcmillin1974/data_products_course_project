@@ -7,7 +7,7 @@ library(scales)
 library(shinythemes)
 
 #load the data
-salary.disp <- fread("dat/salary.dat")
+salary.disp <- fread("salary.dat", header = TRUE)
 salary.disp.new <- as.data.frame(salary.disp[1,])
 salary.model.fit <- lm(sl ~ rk + yr + sx, data = salary.disp)
 

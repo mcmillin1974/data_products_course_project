@@ -1,6 +1,8 @@
 library(shinythemes)
+library(data.table)
+salary.disp <- fread("salary.dat", header = TRUE)
 
-shinyUI(fluidPage(theme = shinytheme("Flatly"),
+shinyUI(fluidPage(
         
         titlePanel("Small College Salary Predictor"),
         sidebarLayout(
