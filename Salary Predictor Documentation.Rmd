@@ -1,0 +1,43 @@
+---
+title: "README - Small College Salary Predictor (Shiny)"
+author: "Lyle McMillin"
+date: "August 14, 2016"
+output: html_document
+---
+
+##Overview
+This application was created to meet the requirements set forth in the Coursera Data Science Data Products Course Project. 
+The overall objective of the shiny project was as follows: Write a shiny application with associated supporting documentation.  For my project I decided to create an application that predicted the salary for a college professor at a small college using the most significant variables from the dataset.  The variables used were:
+
+- Current Rank
+- Years in Current Rank
+- Gender
+
+The data for this application came from the following source:  S. Weisberg (1985). Applied Linear Regression, Second Edition. New York: John Wiley and Sons. Page 194.  It can be downloaded from the following link: http://data.princeton.edu/wws509/datasets/salary.dat
+
+##User Instructions
+
+To use this app, the user must merely select the **Current Rank, Years in Current Rank and the Gender** of a prospetive professor for our small college.  Upon making a change to the profile, the application will update the predicted salary information and display it on the **bottom right panel of the screen**.
+
+##Source Files
+The **ui.R** and **server.R** files can be found within the following Github repo:  http://github.com/mcmillin1974/data_products_course_project
+
+##Reference Code
+
+This information was derived from a linear regression that was performed on the data.  The results of the linear regression showed that these three variables accounted for nearly 86% of the response variable variation.  For your reference, the results of that linear regression have been included with this documentation.
+
+```{r, echo=FALSE}
+#load the necassary library
+library(data.table)
+#read the salary data into the salary.disp data frame
+salary.disp <- fread("dat/salary.dat")
+```
+
+```{r}
+#peform an linear regression on all factors and produce the summary of the model
+salary.model.fit.all <- lm(sl ~ ., data = salary.disp)
+summary(salary.model.fit.all)
+#create the final model based of the most significant factors and produce a summary of that model
+salary.model.fit <- lm(sl ~ rk + yr + sx, data = salary.disp)
+summary(salary.model.fit)
+```
